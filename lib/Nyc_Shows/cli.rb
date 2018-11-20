@@ -2,7 +2,7 @@
 
 class NycShows::CLI
   
-  def call
+  def command
     puts "Hello! What would you like to do?"
     puts "Type 'shows' for a list of all show names."
     puts "Type 'broadway' for all broadway shows."
