@@ -1,8 +1,8 @@
 
 
-class NycShows::collection_select
+class NycShows::CLI
   
-  def caller
+  def call
     puts "Hello! What would you like to do?"
     puts "Type 'shows' for a list of all show names."
     puts "Type 'broadway' for all broadway shows."
