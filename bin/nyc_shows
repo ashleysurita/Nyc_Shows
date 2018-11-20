@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 
+require_relative './lib/Nyc_Shows'
+
 NycShows::CLI.new.call

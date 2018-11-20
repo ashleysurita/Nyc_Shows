@@ -1,6 +1,4 @@
-require "Nyc_Shows/version"
+require_relative "./Nyc_Shows/version"
+require_relative "./Nyc_Shows/cli"
 
-module NycShows
-  class Error < StandardError; end
-  # Your code goes here...
-end
+
