@@ -1,4 +1,4 @@
-class Show
+class Nyc_Shows::Show
 
     attr_accessor :name, :url, :location, :duration, :story, :genre
 
