@@ -1,8 +1,6 @@
 # NycShows
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/Nyc_Shows`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This is a Ruby Gem, which provides a CLI to view Broadway and Off Broadway Shows happening in the NYC area.
 
 ## Installation
 
@@ -22,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+'$ nyc_shows' and follow prompts
 
 ## Development
 
