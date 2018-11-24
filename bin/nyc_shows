@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
-require './lib/Nyc_Shows'
+require "bundler/setup"
+require "Nyc_Shows"
 
 NycShows::CLI.new.call
