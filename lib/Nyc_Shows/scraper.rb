@@ -1,4 +1,3 @@
-
 class NycShows::Scraper
   
     def self.scrape_home_page
