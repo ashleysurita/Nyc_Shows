@@ -3,6 +3,8 @@ class NycShows::CLI
   
   def call
     NycShows::Scraper.new.make_shows
+    # scrape.scrape_home_page
+    # scrape.make_shows
     command
   end
   

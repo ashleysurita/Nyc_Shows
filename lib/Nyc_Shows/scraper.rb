@@ -1,5 +1,5 @@
 
-class Scraper
+class NycShows::Scraper
   
     def self.scrape_home_page
       html = Nokogiri::HTML(open("https://www.broadway.com/shows/tickets/"))
@@ -30,7 +30,7 @@ class Scraper
     def self.make_shows
       self.scrape_home_page.each do |home_site|
         attr_hash = self.show_info(home_site[:show_url])
-        show = Show.find_or_create_by_name(home_site[:name])
+        show = NycShows::Show.find_or_create_by_name(home_site[:name])
         show.url = home_site([:show_url])
         show.add_show_attributes(attr_hash)
       end
