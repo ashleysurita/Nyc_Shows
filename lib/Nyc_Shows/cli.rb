@@ -1,8 +1,7 @@
 
-
 class NycShows::CLI
   
-  def command
+  def call
     puts "Hello! What would you like to do?"
     puts "Type 'shows' for a list of all show names."
     puts "Type 'broadway' for all broadway shows."
@@ -46,6 +45,7 @@ class NycShows::CLI
         puts "#{index}. #{show.name.titleize}"
       end
       b_list
+      call
     end
 
     def off_broadway
@@ -60,6 +60,7 @@ class NycShows::CLI
         puts "#{index}. #{show.name.titleize}"
       end
       off_b_list
+      call
     end
 
     def show_story
