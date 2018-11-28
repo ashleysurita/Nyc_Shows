@@ -26,15 +26,15 @@ class NycShows::Show
     end
     
     def self.create_new(show_hash)
-        show_hash.each {|show| Show.new(show)}
+        show_hash.each {|show| self.new(show_hash)}
     end
 
     def self.find_by_name(name)
         @@all.find {|show| show.name == name}
     end
       
-    def self.find_or_create_by_name(show)
-        self.find_by_name(show) || self.create_new(show)
+    def self.find_or_create_by_name(show_hash)
+        self.find_by_name(show_hash[:name]) || self.create_new(show_hash)
     end
 
 end
