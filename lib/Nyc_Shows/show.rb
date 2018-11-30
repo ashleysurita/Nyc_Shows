@@ -26,7 +26,8 @@ class NycShows::Show
     end
     
     def self.create_new(show_hash)
-        show_hash.each {|show| self.new(show_hash)}
+        self.new(show_hash)
+        # show_hash.each {|show| self.new(show_hash)}
     end
 
     def self.find_by_name(name)

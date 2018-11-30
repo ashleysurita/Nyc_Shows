@@ -1,17 +1,21 @@
 class NycShows::Scraper
   
+    # @@pages = ["https://www.broadway.com/shows/tickets/", "https://www.broadway.com/shows/tickets/?page=", "https://www.broadway.com/shows/tickets/?page=2", "https://www.broadway.com/shows/tickets/?page=3", "https://www.broadway.com/shows/tickets/?page4", "https://www.broadway.com/shows/tickets/?page=5", "https://www.broadway.com/shows/tickets/?page=6", "https://www.broadway.com/shows/tickets/?page=7"]
+  
     def self.scrape_home_page
-      html = Nokogiri::HTML(open("https://www.broadway.com/shows/tickets/"))
-      flex = html.css('div.flex-grid.flex-grid--bsrow')
-      grid = flex.css('div.card.card--hover.card--shadow.bg-white.mtn')
-      show_hash = []
-      grid.each do |show|
-        name = show.css('div.media-body h2 a').text
-        show_url = show.css('div.media-body h2 a.link-111-111').attribute('href').value
-        show = {:name => name.downcase, :show_url => "https://www.broadway.com#{show_url.downcase}"}
-        show_hash << show
-      end
-      show_hash
+      # @@pages.each do |page|  
+        html = Nokogiri::HTML(open("https://www.broadway.com/shows/tickets/"))
+        flex = html.css('div.flex-grid.flex-grid--bsrow')
+        grid = flex.css('div.card.card--hover.card--shadow.bg-white.mtn')
+        show_hash = []
+        grid.each do |show|
+          name = show.css('div.media-body h2 a').text
+          show_url = show.css('div.media-body h2 a.link-111-111').attribute('href').value
+          show = {:name => name.downcase, :show_url => "https://www.broadway.com#{show_url.downcase}"}
+          show_hash << show
+        end
+        show_hash
+      # end
     end
 
     def self.show_info(show_url)

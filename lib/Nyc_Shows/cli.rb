@@ -3,11 +3,12 @@ class NycShows::CLI
   
   def call
     NycShows::Scraper.make_shows
+    puts "Hello!"
     command
   end
   
   def command
-    puts "Hello! What would you like to do?"
+    puts "What would you like to do?"
     puts "Type 'shows' for a list of all show names."
     puts "Type 'broadway' for all broadway shows."
     puts "Type 'off-broadway' for all off-broadway shows."
@@ -32,8 +33,9 @@ class NycShows::CLI
       @shows = NycShows::Show.all
       @shows = @shows.sort {|x,y| x.name <=> y.name}
       @shows.each_with_index do |show, index|
-        puts "#{index+1}. #{show.name.titleize} - where: #{show.location} - length: #{show.duration} - genre: #{show.genre}"
+        puts "#{index+1}. #{show.name.capitalize} - Theater: #{show.location.capitalize} - Show length: #{show.duration} - Genre: #{show.genre.capitalize}"
       end
+      command
     end
     
     def show_type(input)
@@ -45,17 +47,17 @@ class NycShows::CLI
       end
       sorted = found_shows.sort {|x,y| x.name <=> y.name}
       sorted.each_with_index do |show, index|
-        puts "#{index+1}. #{show.name.titleize}"
+        puts "#{index+1}. #{show.name.capitalize}"
       end
       command
     end
 
     def show_story
       puts "Please enter the name of a show or type 'exit' to return to main menu:"
-      s = gets.strip.downcase
+      s = gets.downcase
       show = @show.find_by_name(s)
       if show != nil
-        puts "#{show.name.titleize} - #{show.story}"
+        puts "#{show.name.capitalize} - #{show.story}"
         show_story
       elsif show == nil
         puts "Sorry, that's not a current show. Please try again."
