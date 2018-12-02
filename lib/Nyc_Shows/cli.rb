@@ -40,20 +40,20 @@ class NycShows::CLI
     
     def show_type(input)
       @shows = NycShows::Show.all
-      found_shows = @shows.map do |show|
+      found_shows = @shows.collect do |show|
         if show.genre == input
           show
         end
       end
-      sorted = found_shows.sort {|x,y| x.name <=> y.name}
-      sorted.each_with_index do |show, index|
+      found_shows.sort! {|x,y| x.name <=> y.name}
+      found_shows.each_with_index do |show, index|
         puts "#{index+1}. #{show.name.capitalize}"
       end
       command
     end
 
     def show_story
-      @show = NycShows::Show
+      @show = NycShows::Show.all
       puts "Please enter the name of a show or type 'exit' to return to main menu:"
       s = gets.downcase
       show = @show.find_by_name(s)
