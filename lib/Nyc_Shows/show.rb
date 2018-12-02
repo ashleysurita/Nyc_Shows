@@ -30,8 +30,8 @@ class NycShows::Show
         # show_hash.each {|show| self.new(show_hash)}
     end
 
-    def self.find_by_name(name)
-        @@all.find {|show| show.name == name}
+    def self.find_by_name(s_name)
+        @@all.find_all {|show| show.name == s_name}
     end
       
     def self.find_or_create_by_name(show_hash)

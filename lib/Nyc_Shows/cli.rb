@@ -53,6 +53,7 @@ class NycShows::CLI
     end
 
     def show_story
+      @show = NycShows::Show
       puts "Please enter the name of a show or type 'exit' to return to main menu:"
       s = gets.downcase
       show = @show.find_by_name(s)
@@ -63,7 +64,7 @@ class NycShows::CLI
         puts "Sorry, that's not a current show. Please try again."
         show_story
       end
-      if s == 'exit'
+      if s == "exit"
         command
       end
     end
