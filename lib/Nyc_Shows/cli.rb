@@ -1,8 +1,8 @@
 class NycShows::CLI
-  #fix video and send link to video and get it working
   
   def call
-    NycShows::Scraper.make_shows
+    NycShows::Scraper.scrape_home_page
+    NycShows::Scraper.add_attr
     puts "Hello!"
     command
   end

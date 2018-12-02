@@ -3,7 +3,6 @@ class NycShows::Scraper
     @@pages = ["https://www.broadway.com/shows/tickets/", "https://www.broadway.com/shows/tickets/?page=2", "https://www.broadway.com/shows/tickets/?page=3"]
   
     def self.scrape_home_page
-      # @show_hash = []
       @@pages.each do |page|  
         html = Nokogiri::HTML(open(page))
         flex = html.css('div.flex-grid.flex-grid--bsrow')
@@ -12,8 +11,7 @@ class NycShows::Scraper
           name = show.css('div.media-body h2 a').text
           show_url = show.css('div.media-body h2 a.link-111-111').attribute('href').value
           show_hash = {:name => name.downcase, :show_url => "https://www.broadway.com#{show_url}"}
-          # @show_hash << show
-          NycShows::Show.new(show)
+          NycShows::Show.new(show_hash)
         end
       end
     end
@@ -27,17 +25,17 @@ class NycShows::Scraper
       show_info[:location] = s_bar.css('a.block.blue-link-lt.lh-norm').text.downcase
       show_info[:duration] = s_bar.css('div.wht-md')[3].text.downcase
       show_info[:genre] = s_bar.css('li.standard-list__list-item.standard-list__list-item_tighter')[0].text.strip.downcase
-      show = NycShows::Show.find_or_create_by_name(show_info)
-      show.add_show_attributes(show_info)
+      show_info
     end
-    
-    # def self.make_shows
-    #   self.scrape_home_page.each do |home_site|
-    #     attr_hash = self.show_info(home_site[:show_url])
-    #     show = NycShows::Show.find_or_create_by_name(attr_hash)
-    #     show.url = home_site[:show_url]
-    #     show.add_show_attributes(attr_hash)
-    #   end
-    # end
+      
+    def self.add_attr
+      NycShows::Show.all.each do |show|
+        info = self.show_info(show.url)
+        show.add_show_attributes(info)
+        # attr_hash = self.show_info(home_site[:show_url])
+        # show.url = home_site[:show_url]
+        # show.add_show_attributes(attr_hash)
+      end
+    end
 
 end
