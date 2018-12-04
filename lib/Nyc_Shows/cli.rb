@@ -40,13 +40,14 @@ class NycShows::CLI
     
     def show_type(input)
       @shows = NycShows::Show.all
-      found_shows = @shows.collect do |show| 
+      @found_shows = @shows.collect do |show| 
         if show.genre == input
           show
         end
       end
-      found_shows.sort! {|x,y| x.name <=> y.name}
-      found_shows.each_with_index do |show, index|
+      binding.pry
+      @found_shows.sort! {|x,y| x.name <=> y.name}
+      @found_shows.each_with_index do |show, index|
         puts "#{index+1}. #{show.name.capitalize}"
       end
       command
