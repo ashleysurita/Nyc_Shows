@@ -18,7 +18,7 @@ class NycShows::Show
         @@all
     end
     
-    def add_show_attributes(attr_hash)
+    def add_attr(attr_hash)
         @location = attr_hash[:location]
         @duration = attr_hash[:duration]
         @story = attr_hash[:story]

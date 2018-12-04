@@ -2,7 +2,7 @@ class NycShows::CLI
   
   def call
     NycShows::Scraper.scrape_home_page
-    NycShows::Scraper.add_attr
+    # NycShows::Scraper.add_attr
     puts "Hello!"
     command
   end
