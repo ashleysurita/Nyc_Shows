@@ -30,7 +30,7 @@ class NycShows::Scraper
       html = Nokogiri::HTML(open(url))
       show_info = {}
       show_info[:name] = html.css('h1.wht-lt.large-heading.font-charlie.text-shadow-md.mtm').text.downcase
-      show_info[:story] = html.css('div.gray-dk.inner-content-bold p').text.downcase
+      show_info[:story] = html.css('div.gray-dk.inner-content-bold p').text
       s_bar = html.css('div.ptx')
       show_info[:location] = s_bar.css('a.block.blue-link-lt.lh-norm').text.downcase
       show_info[:duration] = s_bar.css('div.wht-md')[3].text.downcase #returning empty array
