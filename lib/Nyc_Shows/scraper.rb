@@ -20,14 +20,11 @@ class NycShows::Scraper
       self.scrape_home_page.each do |show|
         info = self.show_info(show)
         show.add_show_attributes(info)
-        # attr_hash = self.show_info(home_site[:show_url])
-        # show.url = home_site[:show_url]
-        # show.add_show_attributes(attr_hash)
       end
     end
 
-    def self.show_info(show_url)
-      html = Nokogiri::HTML(open(show_url))
+    def self.show_info(url)
+      html = Nokogiri::HTML(open(url))
       show_info = {}
       show_info[:name] = html.css('h1.wht-lt.large-heading.font-charlie.text-shadow-md.mtm').text.downcase
       show_info[:story] = html.css('div.gray-dk.inner-content-bold p').text.downcase
