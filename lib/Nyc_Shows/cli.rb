@@ -56,7 +56,7 @@ class NycShows::CLI
       @show = NycShows::Show
       puts "Please enter the name of a show or type 'exit' to return to main menu:"
       input = gets.strip.downcase
-      while input != "exit"
+      until input == "exit"
         show = @show.find_by_name(input)
         if show != nil
           puts "#{show.name.capitalize} - #{show.story}"
