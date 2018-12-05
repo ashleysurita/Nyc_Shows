@@ -14,18 +14,22 @@ class NycShows::CLI
     puts "Type 'off-broadway' for all off-broadway shows."
     puts "Type 'story' if you would like to know a play's plot."
     puts "Type 'exit' if you're done for the day."
+    
    input = gets.strip.downcase
+    until input == "exit"
       if input == "shows"
         all_shows
       elsif input == "broadway" || input == "off-broadway"
         show_type(input)
       elsif input == "story"
         show_story
-      elsif input == "exit"
-        puts "See you next time!"
       else
         puts "Please enter a valid command"
         command
+      end
+      
+      if input == "exit"
+        puts "See you next time!"
       end
     end
 
@@ -38,17 +42,21 @@ class NycShows::CLI
       command
     end
     
-    def show_type(input)
-      @shows = NycShows::Show.all
-      @found_shows = @shows.collect do |show| 
+    def get_shows(input)
+      shows = NycShows::Show.all
+      shows.collect do |show| 
         if show.genre == input
-          show
+          show.name
         end
       end
-      binding.pry
-      @found_shows.sort! {|x,y| x.name <=> y.name}
-      @found_shows.each_with_index do |show, index|
-        puts "#{index+1}. #{show.name.capitalize}"
+    end
+      
+    def show_type(input)
+      shows = get_shows(input).delete_if {|name| name == nil}
+      sort_list = shows.sort {|x,y| x <=> y}
+      puts "#{input.capitalize} Shows:"
+      sort_list.each_with_index do |show, index|
+        puts "#{index+1}. #{show.capitalize}"
       end
       command
     end
