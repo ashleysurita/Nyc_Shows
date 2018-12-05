@@ -27,9 +27,10 @@ class NycShows::CLI
         puts "Please enter a valid command"
         command
       end
-      
+    end
       if input == "exit"
         puts "See you next time!"
+        break
       end
     end
 
