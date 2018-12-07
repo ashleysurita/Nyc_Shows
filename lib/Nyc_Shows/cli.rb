@@ -2,7 +2,6 @@ class NycShows::CLI
   
   def call
     NycShows::Scraper.scrape_home_page
-    # NycShows::Scraper.add_attr
     puts "Hello!"
     command
   end
@@ -15,23 +14,27 @@ class NycShows::CLI
     puts "Type 'story' if you would like to know a play's plot."
     puts "Type 'exit' if you're done for the day."
     
-   input = gets.strip.downcase
-    until input == "exit"
-      if input == "shows"
-        all_shows
-      elsif input == "broadway" || input == "off-broadway"
-        show_type(input)
-      elsif input == "story"
-        show_story
-      else
-        puts "Please enter a valid command"
-        command
-      end
-    end
-      if input == "exit"
-        puts "See you next time!"
-        break
-      end
+    input = gets.strip.downcase
+      # until input == "exit"
+        case input# if input == "shows"
+          when "shows"
+            all_shows
+        # elsif input == 
+          when "broadway" || "off-broadway"
+            show_type(input)
+          # elsif input == "story"
+          when "story"
+            show_story
+          when "exit"
+            puts "See you next time!"
+          else
+            puts "Please enter a valid command"
+            command
+          end
+      # end
+        # if input == "exit"
+        #   puts "See you next time!"
+        # end
     end
 
     def all_shows
@@ -70,9 +73,11 @@ class NycShows::CLI
         show = @show.find_by_name(input)
         if show != nil
           puts "#{show.name.capitalize} - #{show.story}"
+          input = 'exit'
           show_story
         elsif show == nil
           puts "Sorry, that's not a current show. Please try again."
+          input = 'exit'
           show_story
         end
       end
