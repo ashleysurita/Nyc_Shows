@@ -15,26 +15,21 @@ class NycShows::CLI
     puts "Type 'exit' if you're done for the day."
     
     input = gets.strip.downcase
-      # until input == "exit"
-        case input# if input == "shows"
-          when "shows"
-            all_shows
-        # elsif input == 
-          when "broadway" || "off-broadway"
-            show_type(input)
-          # elsif input == "story"
-          when "story"
-            show_story
-          when "exit"
-            puts "See you next time!"
-          else
-            puts "Please enter a valid command"
-            command
-          end
-      # end
-        # if input == "exit"
-        #   puts "See you next time!"
-        # end
+     case input
+       when "shows"
+        all_shows
+       when "broadway"
+         show_type(input)
+       when "off-broadway"
+         show_type(input)
+       when "story"
+         show_story
+       when "exit"
+        puts "See you next time!"
+       else
+        puts "Please enter a valid command"
+        command
+      end
     end
 
     def all_shows
