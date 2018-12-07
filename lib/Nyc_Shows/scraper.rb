@@ -5,7 +5,6 @@ class NycShows::Scraper
     def self.scrape_home_page
       @@pages.each do |page|  
         html = Nokogiri::HTML(open(page))
-        # flex = html.css('div.flex-grid.flex-grid--bsrow')
         grid = html.css('div.card.card--hover.card--shadow.bg-white.mtn')
         grid.each do |show|
           name = show.css('div.media-body h2 a').text
@@ -18,14 +17,6 @@ class NycShows::Scraper
       end
     end
     
-    # def self.add_attr
-    #   self.scrape_home_page.each do |show|
-    #     info = self.show_info(show[:url])
-    #   binding.pry
-    #     show.add_show_attributes(info)
-    #   end
-    # end
-
     def self.show_info(url)
       html = Nokogiri::HTML(open(url))
       show_info = {}

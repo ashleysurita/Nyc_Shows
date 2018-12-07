@@ -65,7 +65,7 @@ class NycShows::CLI
       puts "Please enter the name of a show or type 'exit' to return to main menu:"
       input = gets.strip.downcase
       case input
-        when "exit" # until input == "exit"
+        when "exit"
           command
         else
           show = @show.find_by_name(input)
@@ -75,7 +75,6 @@ class NycShows::CLI
             show_story
           elsif show == nil
             puts "Sorry, that's not a current show. Please try again."
-            input = 'exit'
             show_story
           end
       end
